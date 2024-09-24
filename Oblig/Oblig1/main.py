@@ -98,7 +98,7 @@ y1_sol = np.dot(A_1, x1_numpySol)
 #          where L is lower triangular matrix and D is a diagonal matrix
 
 
-# We implement the Cholesky factorization and forward substitution functions from the group sessions
+# Implement the Cholesky factorization and forward substitution functions from the group sessions
 # The solution of the normal equations is likely to be unstable. Therefore this
 # method is not recommended in general. For small problems it is usually safe to use
 # https://www.math.iit.edu/~fass/477577_Chapter_5.pdf
@@ -182,7 +182,7 @@ def mse(y_true, y_pred):
     return np.mean((y_true - y_pred) ** 2)
 
 
-# Fit the first dataset (y1) using Cholesky fac
+# Solve with first dataset (y1) using Cholesky fac
 x1_chol_3 = chol_solve(A_1, y1)
 y1_pred_chol_3 = np.dot(A_1, x1_chol_3)
 
@@ -254,5 +254,3 @@ plt.tight_layout(rect=[0, 0, 1, 0.985])
 plt.savefig("QR_vs_Cholesky.pdf")
 # plt.show()
 plt.clf()
-
-
