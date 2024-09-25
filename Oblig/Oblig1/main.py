@@ -140,8 +140,10 @@ def chol_solve(A, b):
     y = A.T @ b # R.T * z = y
 
     cond = np.linalg.cond(B)  
-    if(cond > 1e4):
-        print(f'Warning: Ill conditioed matrix B might give bad results, condition number = {cond:.0f}')
+
+    # print condition number if large
+    if(cond > 1e5):
+        print(f'Warning: Condition number for matrix B might give bad results, condition number = {cond:.0f}')
 
     L, D = cholesky(B)
     #L1 = np.linalg.cholesky(B) #tested if correctly found L
@@ -178,7 +180,7 @@ def forward_substitution(A, b):
     return x
 
 def mse(y_true, y_pred):
-    """Calculate Mean Squared Error."""
+    """Calculate mean squared error to evaluate how well our least squares did."""
     return np.mean((y_true - y_pred) ** 2)
 
 
@@ -195,7 +197,6 @@ y2_pred_chol_3 = np.dot(A_1, x2_chol_3)
 
 x2_chol_8 = chol_solve(A_2, y2)
 y2_pred_chol_8 = np.dot(A_2, x2_chol_8)
-
 
 
 # MSE for different methods
@@ -218,7 +219,7 @@ print(f"Dataset 2, m=3, MSE: QR = {mse_QR_3:.2e}, Chol = {mse_chol_3:.2e}")
 print(f"Dataset 2, m=8, MSE: QR = {mse_QR_8:.2e}, Chol = {mse_chol_8:.2e}")
 
 
-# Plotted for both methods and datasets with m=3 and m=8
+# Plot for both methods and datasets with m=3 and m=8
 fig, axs = plt.subplots(nrows=2, ncols=2, sharex=True, figsize=(12, 12))
 ax0, ax1, ax2, ax3 = axs.flatten()
 sns.set_theme()
@@ -251,6 +252,6 @@ ax3.set_title('Dataset 2, m=8')
 ax3.legend()
 
 plt.tight_layout(rect=[0, 0, 1, 0.985])
-plt.savefig("QR_vs_Cholesky.pdf")
-# plt.show()
+#plt.savefig("QR_vs_Cholesky.pdf")
+plt.show()
 plt.clf()
