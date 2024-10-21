@@ -9,7 +9,7 @@ import os
 import seaborn as sns
 
 # Define the absolute path to the images
-image_folder = r'C:\Users\Elias\Documents\Programming\MAT4110\Oblig\Oblig2'
+image_folder = r'Oblig/Oblig2'
 image_paths = {
     'chessboard': os.path.join(image_folder, 'chessboard.png'),
     'jellyfish': os.path.join(image_folder, 'jellyfish.jpg'),
@@ -96,7 +96,7 @@ plt.show()
 
 
 #Plot compression as a function of rate to keeo r for example image 3
-vals = np.linspace(0,1, 50)
+vals = np.linspace(0,1, 20)
 compression = []
 for percent in vals:
     _, rate = compress_image_SVD(im3, percent, printInfo=False, printLogSing=False)
@@ -104,6 +104,9 @@ for percent in vals:
     compression.append(rate)
 
 plt.plot(vals, compression)
+plt.xlabel("Percent of r used")
+plt.ylabel("Percent values stored")
+plt.title("Singular values used vs total compression")
 plt.show()
 
 '''
