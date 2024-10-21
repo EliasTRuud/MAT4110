@@ -96,10 +96,14 @@ plt.show()
 
 
 #Plot compression as a function of rate to keeo r for example image 3
-vals = np.linspace(0,1, 1000)
+vals = np.linspace(0,1, 50)
+compression = []
 for percent in vals:
     _, rate = compress_image_SVD(im3, percent, printInfo=False, printLogSing=False)
-    plt.scatter(percent, rate*100, color='blue')
+    print(rate)
+    compression.append(rate)
+
+plt.plot(vals, compression)
 plt.show()
 
 '''
