@@ -28,7 +28,7 @@ im2 = img_as_float(im2)
 im3 = img_as_float(im3)
 
 #sns.set_theme()
-'''
+
 # Plot the images
 fig, axs = plt.subplots(1, 3, figsize=(15, 5))
 axs[0].imshow(im1, cmap='gray', vmin=0, vmax=1)
@@ -43,7 +43,7 @@ axs[2].imshow(im3, cmap='gray', vmin=0, vmax=1)
 axs[2].set_title('New York')
 axs[2].axis('off')
 plt.show()
-'''
+
 
 # Task: Compress image using SVD compisition. Remove the smallest singular values
 
@@ -78,7 +78,7 @@ def compress_image_SVD(img, r_rate_remove, printInfo = False, printLogSing = Fal
 
 #Images to float: im1, im2, im3
 
-print("Image1 - chessboard: See that need just 30 singular values. About 2.5 percent of singular values")
+print("Image1 - chessboard: See that need just 30 singular values is sufficient. About 2.5 percent of singular values. Very simple image to represent")
 im1_, _ = compress_image_SVD(im1, 0.025, printInfo=True, printLogSing=True)
 plt.imshow(im1_, cmap='gray')
 plt.show()
@@ -100,25 +100,14 @@ vals = np.linspace(0,1, 20)
 compression = []
 for percent in vals:
     _, rate = compress_image_SVD(im3, percent, printInfo=False, printLogSing=False)
-    print(rate)
     compression.append(rate)
 
+'''
 plt.plot(vals, compression)
-plt.xlabel("Percent of r used")
+plt.xlabel("Percent of sing values used")
 plt.ylabel("Percent values stored")
 plt.title("Singular values used vs total compression")
 plt.show()
-
 '''
-
-im = color.rgb2gray(io.imread("outdoors.jpg"))
-im = img_as_float(im) # big matrix of numbers, which tells you in each pixel how much color there is
-
-# Truncate matrixes correspodning to smalles singular values
-# 
-
-plt.imshow(im, cmap="gray")
-'''
-
 
 
